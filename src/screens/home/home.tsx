@@ -3,6 +3,9 @@ import { InputMask } from '@react-input/mask';
 import { Button } from '../../components/button';
 import { ButtonIcon } from '../../components/button-icon';
 import { Card } from '../../components/card';
+import { CreateCategoryDialog } from '../../components/create-category-dialog';
+import { CreateTransactionDialog } from '../../components/create-transaction-dialog';
+import { Dialog } from '../../components/dialog';
 import { Input } from '../../components/input';
 import { Title } from '../../components/title';
 import { Transaction } from '../../components/transaction';
@@ -18,6 +21,7 @@ import {
   Main,
   SearchTransaction,
   Section,
+  TransactionGroup,
 } from './styles';
 
 export function Home() {
@@ -26,8 +30,8 @@ export function Home() {
       <Header>
         <h1>Money Control$</h1>
         <div>
-          <Button>Nova transação</Button>
-          <Button>Nova categoria</Button>
+          <CreateTransactionDialog />
+          <CreateCategoryDialog />
         </div>
       </Header>
       <Main>
@@ -97,48 +101,50 @@ export function Home() {
               <ButtonIcon />
             </SearchTransaction>
           </header>
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
-          <Transaction
-            id={1}
-            title="Transação"
-            date="12/12/2023"
-            amount={10000}
-            category={{ title: 'Mercado', color: '#55ffff' }}
-          />
+          <TransactionGroup>
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+            <Transaction
+              id={1}
+              title="Transação"
+              date="12/12/2023"
+              amount={10000}
+              category={{ title: 'Mercado', color: '#55ffff' }}
+            />
+          </TransactionGroup>
         </Aside>
       </Main>
     </>
