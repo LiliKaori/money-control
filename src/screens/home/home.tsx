@@ -22,6 +22,7 @@ import {
   Section,
   TransactionGroup,
 } from './styles';
+import { FinancialEvolutionBarChart } from '../../components/financial-evolution-bar-chart';
 
 export function Home() {
   return (
@@ -91,7 +92,9 @@ export function Home() {
                 <ButtonIcon />
               </ChartAction>
             </header>
-            <ChartContent />
+            <ChartContent>
+              <FinancialEvolutionBarChart />
+            </ChartContent>
           </ChartContainer>
         </Section>
         <Aside>
