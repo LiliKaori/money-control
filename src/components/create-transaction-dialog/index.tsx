@@ -13,6 +13,7 @@ import {
   RadioForm,
   RadioGroup,
 } from './styles';
+import { paths } from '../../services/paths';
 
 export function CreateTransactionDialog() {
   const [open, setOpen] = useState(false);
@@ -37,7 +38,7 @@ export function CreateTransactionDialog() {
           subtitle="Crie uma nova transação para seu controle financeiro"
         />
 
-        <form>
+        <form method="POST" action={paths.post.createTransaction}>
           <Content>
             <InputGroup>
               <label>Categoria</label>

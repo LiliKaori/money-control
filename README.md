@@ -1,3 +1,25 @@
+# Money-Control
+
+<div display:"inline_block">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="react.js">
+  <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" alt="styled-components">  
+  <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="eslint">
+  <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="prettier">
+</div>
+  <br>
+Projeto de controle financeiro. Faz a criação de categorias e transações, consulta de destas e do saldo final por período.
+<br><br>
+Nesse projeto possui: 
+<ul>
+  <li>Uso da biblioteca zod para validação de dados, manipulando de forma mais segura dados estruturados.</li>
+  <li>ESlint e Prettier para facilitar encontro de erros e corrigir o código, mantendo a padronização para um estilo pré definido.</li>
+  <li>Programaação orientada a objetos (POO), tornando os códigos modulares que podem ser reutilizados e fácil de entender.</li>
+  <li>Uso do aggregation para tratamento de dados e adquirir a resposta desejada para cada requisição.</li>
+</ul>
+<br>
+<img />
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

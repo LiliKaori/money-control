@@ -1,5 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
+import { api } from '../../services/api';
+import { paths } from '../../services/paths';
+import { CategoryType } from '../../types/category.type';
 import { Button } from '../button';
 import { Dialog } from '../dialog';
 import { Input } from '../input';
@@ -9,13 +12,32 @@ import { Container } from './styles';
 export function CreateCategoryDialog() {
   const [open, setOpen] = useState(false);
 
+  const inputTitle = useRef<HTMLInputElement>(null);
+  const inputColor = useRef<HTMLInputElement>(null);
+
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
 
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback(async () => {
+    const newCategory: CategoryType = {
+      title: inputTitle.current ? inputTitle.current.value : null,
+      color: inputColor.current ? inputColor.current.value : null,
+    };
+
+    await saveCategory(newCategory);
+
     handleClose();
-  }, [handleClose]);
+  }, [handleClose, inputTitle, inputColor]);
+
+  const saveCategory = async (categoryData: CategoryType) => {
+    try {
+      const response = await api.post(paths.post.createCategory, categoryData);
+      console.log('Categoria criada com sucesso:', response.data);
+    } catch (error) {
+      console.error('Erro ao criar a categoria:', error);
+    }
+  };
 
   return (
     <Dialog
@@ -31,14 +53,21 @@ export function CreateCategoryDialog() {
 
         <form>
           <div>
-            <Input label="Nome" placeholder="Nome da categoria..." />
-            <Input label="Cor" type="color" />
+            <Input
+              ref={inputTitle}
+              label="Nome"
+              placeholder="Nome da categoria..."
+            />
+
+            <Input ref={inputColor} label="Cor" type="color" />
           </div>
           <footer>
             <Button onClick={handleClose} variant="outline" type="button">
               Cancelar
             </Button>
-            <Button onClick={onSubmit}>Cadastrar</Button>
+            <Button onClick={onSubmit} type="button">
+              Cadastrar
+            </Button>
           </footer>
         </form>
       </Container>
