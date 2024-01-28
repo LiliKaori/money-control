@@ -5,7 +5,6 @@ import { ZodError, z } from 'zod';
 
 import { api } from '../../services/api';
 import { paths } from '../../services/paths';
-// import { CategoryType } from '../../types/category.type';
 import { Button } from '../button';
 import { Dialog } from '../dialog';
 import { Input } from '../input';
@@ -15,47 +14,35 @@ import { Container } from './styles';
 export function CreateCategoryDialog() {
   const [open, setOpen] = useState(false);
 
-  // const inputTitle = useRef<HTMLInputElement>(null);
-  // const inputColor = useRef<HTMLInputElement>(null);
-
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
 
-  const schema = z.object({
+  const categorySchema = z.object({
     title: z.string().min(1, { message: 'O nome é obrigatório' }),
     color: z.string(),
   });
 
-  type FormData = z.infer<typeof schema>;
+  type FormCategoryType = z.infer<typeof categorySchema>;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<FormCategoryType>({ resolver: zodResolver(categorySchema) });
 
-  const saveCategory: SubmitHandler<FormData> = async categoryData => {
+  const saveCategory: SubmitHandler<FormCategoryType> = async categoryData => {
     try {
       const response = await api.post(paths.post.createCategory, categoryData);
+      handleClose();
       console.log('Categoria criada com sucesso:', response.data);
     } catch (error) {
+      handleClose();
       if (error instanceof ZodError) {
         console.error('Erro ao criar a categoria:', error.errors);
       }
     }
   };
-
-  // const onSubmit = useCallback(async () => {
-  //   const newCategory: CategoryType = {
-  //     title: inputTitle.current ? inputTitle.current.value : null,
-  //     color: inputColor.current ? inputColor.current.value : null,
-  //   };
-
-  //   await saveCategory(newCategory);
-
-  //   handleClose();
-  // }, [handleClose, inputTitle, inputColor]);
 
   return (
     <Dialog

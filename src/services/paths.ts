@@ -2,8 +2,8 @@ export const paths = {
   get: {
     listCategories: '/categories',
     listTransaction: '/transactions',
-    getDashboard: '/dashboard',
-    getFinancialEvolution: '/financial-evolution',
+    getDashboard: '/transactions/dashboard',
+    getFinancialEvolution: '/transactions/financial-evolution',
   },
   post: {
     createCategory: '/categories',

@@ -1,4 +1,5 @@
 import { formatCurrency } from '../../utils/format-currency';
+import { formatDate } from '../../utils/format-date';
 import { Container, Content, Info } from './styles';
 
 type TransactionProps = {
@@ -27,7 +28,7 @@ export function Transaction({
         <span>{id.toString().padStart(4, '0')}</span>
         <div>
           <strong>{title}</strong>
-          <span>{date}</span>
+          <span>{formatDate(date)}</span>
         </div>
       </Info>
       <Content $variant={variant} $tagColor={category.color}>
