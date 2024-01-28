@@ -1,29 +1,32 @@
 import { ResponsivePie } from '@nivo/pie';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
+import { api } from '../../services/api';
+import { paths } from '../../services/paths';
 import { theme } from '../../styles/theme';
+import { ExpenseType } from '../../types/expenses.type';
 import { formatCurrency } from '../../utils/format-currency';
 
-const apiData = [
-  {
-    _id: '1',
-    title: 'Alimentação',
-    amount: 50000,
-    color: '#ff33bb',
-  },
-  {
-    _id: '2',
-    title: 'Compras',
-    amount: 15000,
-    color: '#0034bc',
-  },
-  {
-    _id: '3',
-    title: 'Shopping',
-    amount: 60000,
-    color: '#7145dd',
-  },
-];
+// const apiData = [
+//   {
+//     _id: '1',
+//     title: 'Alimentação',
+//     amount: 50000,
+//     color: '#ff33bb',
+//   },
+//   {
+//     _id: '2',
+//     title: 'Compras',
+//     amount: 15000,
+//     color: '#0034bc',
+//   },
+//   {
+//     _id: '3',
+//     title: 'Shopping',
+//     amount: 60000,
+//     color: '#7145dd',
+//   },
+// ];
 
 type ChartData = {
   id: string;
@@ -34,8 +37,20 @@ type ChartData = {
 };
 
 export function CategoriesPieChart() {
+  const [dashboardData, setDashboardData] = useState<ExpenseType[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await api.get(paths.get.getDashboard);
+      setDashboardData(result.data.expenses);
+    };
+
+    getData();
+  }, []);
+
   const data = useMemo<ChartData[]>(() => {
-    const chartData = apiData.map(item => ({
+    // const chartData = apiData.map(item => ({
+    const chartData = dashboardData.map(item => ({
       id: item.title,
       label: item.title,
       externalId: item._id,
@@ -44,7 +59,7 @@ export function CategoriesPieChart() {
     }));
 
     return chartData;
-  }, []);
+  }, [dashboardData]);
   return (
     <ResponsivePie
       data={data}
